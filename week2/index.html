@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Pig Latin - Jesse Hernandez</title>
+</head>
+
+<body>
+   
+<!--
+   PIG LATIN RULES:
+    - if a word begins with a vowel, the letter remains in place and 'way' is appended to the end of the word:
+    apple -> appleway
+    
+    text + "way"
+    
+    - if a word begins with one consonant, that letter is moved to the end and 'ay' is appended:
+    pig latin -> igpay atinlay
+    
+    text.slice(1) + text.substr(0, 1) + "ay"
+    
+    - if a word begins with two consonants, both letters are moved to the end and 'ay' is appended:
+    grade -> adegray
+    
+    text.slice(2) + text.substr(0, 2) + "ay"
+-->
+    
+    
+    <script src="script.js"></script>
+
+    <script>
+        
+        document.write("Your word is now a secret code!: " + pigOut);
+    </script>
+
+</body>
+
+</html>
