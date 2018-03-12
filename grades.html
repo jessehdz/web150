@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Making the Grade - Jesse Hernandez</title>
+</head>
+
+<body>
+
+    <!-- 
+    MAKING THE GRADE - 
+
+    Your program should: 
+    - display each student name and score 
+    - capitalize the first letter of student name
+    - display total # of students,
+    - display the lowest, highest, and average scores
+
+    Hint:
+    You can use JavaScript's string split() method to get a list of individual students from the 'grades' string. Note that students are separated by comma AND a space.
+    You can use a second split() to get separate values for student name and grade,
+    You can use parseInt() to convert student grades from a string to a number,
+
+    Extra Credit
+    - List students in alphabetical order
+
+    @writtenby: Jesse Hernandez
+    -->
+
+    <h2>MAKING THE GRADE</h2>
+    <hr>
+
+    <p id="total"></p>
+    <p id="grades"></p>
+    <p><strong>Name - Grade</strong></p>
+
+    <script>
+        function makingGrade() {
+            var grades = "jim|25, sue|32, mary|34, ann|22, ted|28, frank|15, lisa|19, mike|30, ahn|26, vishaya|27".split(', ');
+
+            //sorts alphabetically 
+            grades.sort();
+
+            //separates students from grades
+            for (n in grades) {
+                var fields = grades[n].split('|');
+                var name = fields[0];
+                var grade = fields[1];
+
+                document.write(name[0].toUpperCase() + name.slice(1) + " - - - " + grade + "<br>");
+
+            }
+
+            //counting total number of students
+            var counter = 0;
+            for (var i = 0; i < grades.length; i++) {
+                var current = grades[i];
+                if (current) {
+                    counter = counter + 1;
+                }
+            }
+            document.getElementById("total").innerHTML = "Total Students: " + counter;
+
+            //computes average grade for all 10 students
+            for (n in grades) {
+                var fields = grades[n].split('|');
+                var grade = fields[1]; //takes only the grade
+
+
+                var sum = 0;
+                for (var i = 0; i < grade.length; i++) {
+                    sum += parseInt(grade[i], 10);
+
+                }
+                var avg = sum / grade.length;
+            }
+            document.write("<br>" + "Grade max: " + Math.max(grade[i]));
+            document.write("<br>" + "Grade min: " + Math.min(grade[i]));
+            document.write("<br>" + "Grade avg: " + avg + "<br>");
+
+        }
+
+        makingGrade();
+    </script>
+</body>
+
+</html>
