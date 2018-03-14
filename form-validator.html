@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Form Validation - JS</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+</head>
+
+<body>
+
+
+    <!-- Create a separate function called validatePassword to validate user-entered passwords. 
+    Valid passwords should have at least 8 characters, 
+    at least one uppercase letter, and 
+    at  least one lowercase letter. 
+    
+    validatePassword should return true if a password is valid, and false otherwise.
+    Invoke this new function from the main 'validateForm' function,
+    Use conditional logic to show appropriate messages for these scenarios:
+
+         1. Invalid password (missing password is the same as invalid)
+         2. Missing first or last name
+         3. Correct entries for all 3 fields
+
+    Your program can stop and show a message when the first invalid condition is met.
+  
+    @writtenBy Jesse Hernandez -->
+
+
+    <h1>Functions & Form Validation</h1>
+
+    <form id="form1" action="#" onsubmit="return validateForm(this);">
+        First Name: <input type="text" name="firstname">
+
+        <br> Last Name: <input type="text" name="lastname">
+
+
+        <br> Password: <input type="password" name="password"> <br>
+        <p id="valid-password-error" style="color:red;"></p>
+
+        <button>Check</button>
+        <p id="valid-name-error" style="color:red;"></p>
+    </form>
+
+    <hr>
+    <div id="submission-message"></div>
+
+    <script>
+        function validateForm(myForm) {
+
+            // console.log(myForm.firstname.value); //prints password, fname, or lname value to console
+
+            // form field values turned into variables
+            var firstName = myForm.firstname.value; // get text of firstname field
+            var lastName = myForm.lastname.value; // get text of lastname field
+            var password = myForm.password.value; // get text of password field
+
+            //validating password
+            var lowercaseLetters = /[a-z]/g;
+            var uppercaseLetters = /[A-Z]/g;
+
+            var isValid = false;
+
+            // use this syntax to update 'message' DIV with appropriate wording
+            $("#submission-message").html("Thank you for logging in!");
+
+            /* Form validation code goes here */
+
+            //checks name fields
+            if (!firstName) {
+                document.getElementById("valid-name-error").innerHTML = 'Please enter a valid First Name';
+                return false;
+            } else if (!lastName) {
+                document.getElementById("valid-name-error").innerHTML = 'Please enter a valid Last Name';
+                return false;
+            } else if (!password) {
+                document.getElementById("valid-password-error").innerHTML = 'Please enter a password';
+                return false;
+            } else if (!password.match(lowercaseLetters)) { // checks for lowercase letters
+                document.getElementById("valid-password-error").innerHTML = 'Password must include at least one lowercase letter';
+                return false;
+            } else if (!password.match(uppercaseLetters)) { // checks for uppercase letters
+                document.getElementById("valid-password-error").innerHTML = 'Password must include at least one uppercase letter';
+                return false;
+            } else if (!password.value.length >= 8) { // checks for correct 8 characater min length
+                document.getElementById("valid-password-error").innerHTML = 'Password must be at least 8 characters long';
+                return false;
+            } else {
+                return true;
+            }
+
+            console.log(isValid);
+            return false; // prevent page reload
+        }
+    </script>
+
+</body>
+
+</html>
